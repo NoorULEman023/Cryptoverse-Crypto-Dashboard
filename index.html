@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoVerse – 3D Live Crypto Dashboard | Real-Time Market Data</title>
+    <meta name="description" content="Monitor live cryptocurrency prices, market statistics, favorite coins, market trends, and 3D visualizations from one futuristic SaaS platform.">
+    <meta name="keywords" content="cryptocurrency, live crypto dashboard, bitcoin 3D, three.js, coingecko api, crypto converter, fintech dashboard">
+    <meta name="author" content="CryptoVerse Full Stack Intern">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="CryptoVerse – 3D Live Crypto Dashboard">
+    <meta property="og:description" content="Futuristic fintech dashboard with Three.js 3D Bitcoin visualizations, real-time prices, and market analytics.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon (SVG Data URI) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%2300E5FF%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23050816%22>₿</text></svg>">
+
+    <!-- Google Fonts: Poppins & Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- =========================================================
+         LOADING SCREEN
+         ========================================================= -->
+    <div id="loading-screen" class="loading-screen" role="status" aria-live="polite">
+        <div class="loader-content">
+            <div class="animated-bitcoin-icon">
+                <i class="fa-brands fa-bitcoin"></i>
+            </div>
+            <h2 class="loader-title">CryptoVerse</h2>
+            <p class="loader-text" id="loader-status">Initializing 3D Quantum Core...</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         TOAST NOTIFICATIONS CONTAINER
+         ========================================================= -->
+    <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+
+    <!-- =========================================================
+         NAVIGATION BAR
+         ========================================================= -->
+    <header class="navbar-wrapper">
+        <nav class="navbar" id="navbar">
+            <a href="index.html" class="navbar-logo" aria-label="CryptoVerse Home">
+                <div class="logo-icon-wrapper">
+                    <i class="fa-solid fa-cube logo-icon"></i>
+                </div>
+                <span class="logo-text">Crypto<span class="logo-accent">Verse</span></span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="watchlist.html" class="nav-link">Watchlist <span id="nav-watchlist-count" class="badge">0</span></a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark or light theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon theme-icon"></i>
+                </button>
+                
+                <!-- Responsive Hamburger Menu -->
+                <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================================================
+         MAIN CONTENT AREA
+         ========================================================= -->
+    <main class="main-content">
+
+        <!-- =========================================================
+             HERO SECTION (SPLIT TWO COLUMNS WITH 3D CANVAS)
+             ========================================================= -->
+        <section class="hero-section" id="hero">
+            <div class="hero-container">
+                <!-- Left Side: Typography & Actions -->
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-bolt badge-icon"></i>
+                        <span>Next-Gen Crypto Intelligence</span>
+                    </div>
+                    <h1 class="hero-title">Track Crypto Like <span class="text-gradient">Never Before</span></h1>
+                    <p class="hero-subtitle">
+                        Monitor live cryptocurrency prices, market trends, and your favorite coins with an immersive 3D dashboard designed for futuristic traders.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#market-table-section" class="btn btn-primary" id="explore-btn">
+                            <span>Explore Market</span>
+                            <i class="fa-solid fa-arrow-right btn-icon"></i>
+                        </a>
+                        <a href="watchlist.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-star btn-icon-left"></i>
+                            <span>My Watchlist</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat-item">
+                            <h3 class="stat-num font-orbitron">17,000+</h3>
+                            <p class="stat-label">Coins Tracked</p>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat-item">
+                            <h3 class="stat-num font-orbitron">24/7</h3>
+                            <p class="stat-label">Live Market Data</p>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat-item">
+                            <h3 class="stat-num font-orbitron">&lt; 30s</h3>
+                            <p class="stat-label">Real-Time Sync</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Three.js Responsive 3D Canvas -->
+                <div class="hero-right">
+                    <div id="three-hero-container" class="three-container" aria-label="3D Interactive Bitcoin and Digital Globe Visualization">
+                        <canvas id="three-canvas"></canvas>
+                        <div class="three-overlay-badge">
+                            <span class="pulse-dot"></span>
+                            <span>Interactive 3D Core</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Background Glows and Blobs -->
+            <div class="bg-blob blob-primary"></div>
+            <div class="bg-blob blob-secondary"></div>
+        </section>
+
+        <!-- =========================================================
+             MARKET OVERVIEW (4 ANIMATED STATISTIC CARDS)
+             ========================================================= -->
+        <section class="section market-overview" id="overview">
+            <div class="section-header">
+                <h2 class="section-title">Global <span class="text-gradient">Market Overview</span></h2>
+                <p class="section-subtitle">Real-time macro economics powered by CoinGecko API</p>
+            </div>
+
+            <div class="overview-grid" id="overview-cards-container">
+                <!-- Skeleton Loader for Cards -->
+                <div class="glass-card stat-card skeleton-card">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-text long font-orbitron"></div>
+                </div>
+                <div class="glass-card stat-card skeleton-card">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-text long font-orbitron"></div>
+                </div>
+                <div class="glass-card stat-card skeleton-card">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-text long font-orbitron"></div>
+                </div>
+                <div class="glass-card stat-card skeleton-card">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-text long font-orbitron"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TRENDING COINS (HORIZONTAL CARD LAYOUT)
+             ========================================================= -->
+        <section class="section trending-section" id="trending">
+            <div class="section-header flex-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-fire text-primary"></i> Trending <span class="text-gradient">Cryptocurrencies</span></h2>
+                    <p class="section-subtitle">Most searched coins in the last 24 hours</p>
+                </div>
+                <div class="carousel-controls">
+                    <button class="icon-btn" id="trending-prev" aria-label="Scroll left"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="icon-btn" id="trending-next" aria-label="Scroll right"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="trending-scroll-container" id="trending-cards-container">
+                <!-- Skeleton Loader for Trending Coins -->
+                <div class="glass-card trending-card skeleton-card">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short font-orbitron"></div>
+                </div>
+                <div class="glass-card trending-card skeleton-card">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short font-orbitron"></div>
+                </div>
+                <div class="glass-card trending-card skeleton-card">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short font-orbitron"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TOP GAINERS & TOP LOSERS (GRID SECTION)
+             ========================================================= -->
+        <section class="section gainers-losers-section" id="movers">
+            <div class="movers-grid">
+                <!-- Top Gainers Column -->
+                <div class="movers-column glass-card border-green-glow">
+                    <div class="movers-header">
+                        <h3 class="movers-title"><i class="fa-solid fa-arrow-trend-up text-green"></i> Top <span class="text-green">Gainers (24H)</span></h3>
+                        <span class="badge badge-green">Bullish</span>
+                    </div>
+                    <div class="movers-list" id="top-gainers-list">
+                        <!-- Skeleton List -->
+                        <div class="skeleton-row"></div>
+                        <div class="skeleton-row"></div>
+                        <div class="skeleton-row"></div>
+                    </div>
+                </div>
+
+                <!-- Top Losers Column -->
+                <div class="movers-column glass-card border-red-glow">
+                    <div class="movers-header">
+                        <h3 class="movers-title"><i class="fa-solid fa-arrow-trend-down text-red"></i> Top <span class="text-red">Losers (24H)</span></h3>
+                        <span class="badge badge-red">Bearish</span>
+                    </div>
+                    <div class="movers-list" id="top-losers-list">
+                        <!-- Skeleton List -->
+                        <div class="skeleton-row"></div>
+                        <div class="skeleton-row"></div>
+                        <div class="skeleton-row"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             LIVE MARKET TABLE (WITH SEARCH, SORT & WATCHLIST BUTTONS)
+             ========================================================= -->
+        <section class="section market-table-section" id="market-table-section">
+            <div class="section-header">
+                <h2 class="section-title">Live <span class="text-gradient">Market Prices</span></h2>
+                <p class="section-subtitle">Real-time market capitalizations, volumes, and 24-hour performance</p>
+            </div>
+
+            <!-- Table Controls: Live Search and Sorting -->
+            <div class="table-controls glass-card">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="coin-search-input" placeholder="Search by coin name or symbol (e.g. Bitcoin, BTC)..." aria-label="Search cryptocurrency table">
+                    <button id="clear-search-btn" class="clear-btn hidden" aria-label="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="sort-controls">
+                    <label for="sort-select" class="sort-label"><i class="fa-solid fa-filter"></i> Sort By:</label>
+                    <select id="sort-select" class="custom-select" aria-label="Sort table by">
+                        <option value="rank_asc">Rank (1 → 100)</option>
+                        <option value="price_desc">Price (High → Low)</option>
+                        <option value="price_asc">Price (Low → High)</option>
+                        <option value="change_desc">24H Change (Gainers First)</option>
+                        <option value="change_asc">24H Change (Losers First)</option>
+                        <option value="cap_desc">Market Cap (High → Low)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table Responsive Wrapper -->
+            <div class="table-responsive-wrapper glass-card">
+                <table class="market-table" id="market-table">
+                    <thead>
+                        <tr>
+                            <th class="th-rank">Rank</th>
+                            <th class="th-name">Coin</th>
+                            <th class="th-price">Price (USD)</th>
+                            <th class="th-change">24H Change</th>
+                            <th class="th-cap">Market Cap</th>
+                            <th class="th-volume">24H Volume</th>
+                            <th class="th-fav">Fav</th>
+                            <th class="th-action">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-table-body">
+                        <!-- Skeletons injected while loading -->
+                    </tbody>
+                </table>
+                
+                <!-- No Results State -->
+                <div id="table-no-results" class="no-results hidden">
+                    <i class="fa-solid fa-folder-open no-results-icon"></i>
+                    <h3>No cryptocurrencies found</h3>
+                    <p>Try searching for a different coin name or ticker symbol.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             CRYPTO CONVERTER & PRICE ALERT SECTION (2 COLUMNS)
+             ========================================================= -->
+        <section class="section tools-section" id="tools">
+            <div class="tools-grid">
+                <!-- Crypto Converter Card -->
+                <div class="glass-card tool-card" id="converter-card">
+                    <div class="tool-header">
+                        <div class="tool-icon-box"><i class="fa-solid fa-rotate text-primary"></i></div>
+                        <div>
+                            <h3 class="tool-title">Crypto <span class="text-gradient">Converter</span></h3>
+                            <p class="tool-desc">Instant real-time fiat and crypto exchange calculation</p>
+                        </div>
+                    </div>
+
+                    <div class="converter-form">
+                        <div class="form-group">
+                            <label for="convert-amount">Amount</label>
+                            <input type="number" id="convert-amount" value="1" min="0.000001" step="any" placeholder="Enter amount..." class="custom-input">
+                        </div>
+
+                        <div class="converter-row">
+                            <div class="form-group half">
+                                <label for="convert-from-coin">From Crypto</label>
+                                <select id="convert-from-coin" class="custom-select">
+                                    <option value="bitcoin" data-symbol="BTC">Bitcoin (BTC)</option>
+                                    <option value="ethereum" data-symbol="ETH">Ethereum (ETH)</option>
+                                    <option value="solana" data-symbol="SOL">Solana (SOL)</option>
+                                    <option value="binancecoin" data-symbol="BNB">BNB (BNB)</option>
+                                    <option value="ripple" data-symbol="XRP">XRP (XRP)</option>
+                                    <option value="dogecoin" data-symbol="DOGE">Dogecoin (DOGE)</option>
+                                </select>
+                            </div>
+
+                            <button id="swap-converter-btn" class="swap-btn" aria-label="Swap conversion direction"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+
+                            <div class="form-group half">
+                                <label for="convert-to-currency">To Fiat / Crypto</label>
+                                <select id="convert-to-currency" class="custom-select">
+                                    <option value="usd" data-symbol="$">USD ($)</option>
+                                    <option value="eur" data-symbol="€">EUR (€)</option>
+                                    <option value="pkr" data-symbol="₨">PKR (₨)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="converter-result-box">
+                            <span class="result-label">Estimated Value:</span>
+                            <h4 id="converter-result-text" class="result-value font-orbitron">$0.00 USD</h4>
+                            <p id="converter-rate-info" class="rate-info">1 BTC = Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Alert Simulation Card -->
+                <div class="glass-card tool-card" id="alert-card">
+                    <div class="tool-header">
+                        <div class="tool-icon-box"><i class="fa-solid fa-bell text-secondary"></i></div>
+                        <div>
+                            <h3 class="tool-title">Price <span class="text-gradient">Alert Radar</span></h3>
+                            <p class="tool-desc">Set target notifications triggered by live API feeds</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-form">
+                        <div class="form-group">
+                            <label for="alert-coin-select">Select Coin</label>
+                            <select id="alert-coin-select" class="custom-select">
+                                <option value="bitcoin">Bitcoin (BTC)</option>
+                                <option value="ethereum">Ethereum (ETH)</option>
+                                <option value="solana">Solana (SOL)</option>
+                                <option value="binancecoin">BNB (BNB)</option>
+                                <option value="ripple">XRP (XRP)</option>
+                                <option value="dogecoin">Dogecoin (DOGE)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alert-target-price">Target Price (USD $)</label>
+                            <div class="input-with-icon">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="alert-target-price" placeholder="e.g. 100000" step="any" class="custom-input">
+                            </div>
+                            <small class="form-hint" id="alert-current-hint">Current Price: Loading...</small>
+                        </div>
+
+                        <button id="save-alert-btn" class="btn btn-primary full-width">
+                            <i class="fa-solid fa-satellite-dish btn-icon-left"></i>
+                            <span>Activate Radar Alert</span>
+                        </button>
+
+                        <div id="active-alert-box" class="active-alert-box hidden">
+                            <div class="alert-badge-info">
+                                <i class="fa-solid fa-shield-halved text-green"></i>
+                                <span>Active: <strong id="active-alert-text">BTC @ $100,000</strong></span>
+                            </div>
+                            <button id="delete-alert-btn" class="delete-icon-btn" aria-label="Cancel alert"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Footer Brand Column -->
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="navbar-logo footer-logo">
+                        <div class="logo-icon-wrapper">
+                            <i class="fa-solid fa-cube logo-icon"></i>
+                        </div>
+                        <span class="logo-text">Crypto<span class="logo-accent">Verse</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        A futuristic 3D cryptocurrency dashboard providing real-time market data, interactive charts, and quantum portfolio insights for modern traders.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Placeholder"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Placeholder"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter Placeholder"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Discord Placeholder"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home Dashboard</a></li>
+                        <li><a href="watchlist.html">My Watchlist</a></li>
+                        <li><a href="about.html">About Project</a></li>
+                        <li><a href="coin.html?id=bitcoin">Bitcoin Analysis</a></li>
+                    </ul>
+                </div>
+
+                <!-- Technologies Used Column -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Tech Stack</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html#tech-stack"><i class="fa-brands fa-html5 text-primary"></i> HTML5 & CSS3</a></li>
+                        <li><a href="about.html#tech-stack"><i class="fa-brands fa-js text-secondary"></i> Vanilla JavaScript (ES6+)</a></li>
+                        <li><a href="about.html#tech-stack"><i class="fa-solid fa-cube text-green"></i> Three.js (3D Graphics)</a></li>
+                        <li><a href="about.html#tech-stack"><i class="fa-solid fa-chart-line text-primary"></i> Chart.js & GSAP</a></li>
+                    </ul>
+                </div>
+
+                <!-- API & Legal Column -->
+                <div class="footer-col">
+                    <h4 class="footer-title">API Credits</h4>
+                    <p class="footer-api-text">
+                        Market data powered by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener noreferrer" class="footer-link-highlight">CoinGecko Public API</a>.
+                    </p>
+                    <div class="api-status-badge">
+                        <span class="status-dot green"></span>
+                        <span id="api-status-text">API Feeds: Operational</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright-text">
+                    &copy; 2026 CryptoVerse. Designed & Developed for Full Stack Development Internship.
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="about.html">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="about.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         FLOATING BACK TO TOP BUTTON
+         ========================================================= -->
+    <button id="back-to-top-btn" class="floating-btn" aria-label="Scroll back to top of page" title="Back To Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- =========================================================
+         EXTERNAL LIBRARIES CDN
+         ========================================================= -->
+    <!-- Three.js r128 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- GSAP 3.12.2 & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- =========================================================
+         INTERNAL JAVASCRIPT MODULES
+         ========================================================= -->
+    <script src="js/api.js"></script>
+    <script src="js/threeScene.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

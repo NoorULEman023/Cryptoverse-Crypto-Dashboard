@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project – CryptoVerse 3D Dashboard</title>
+    <meta name="description" content="Learn about the architecture, problem statement, real-world fintech solution, and technologies behind CryptoVerse.">
+    <meta name="author" content="CryptoVerse Full Stack Intern">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%2300E5FF%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23050816%22>₿</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- =========================================================
+         TOAST NOTIFICATIONS CONTAINER
+         ========================================================= -->
+    <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+
+    <!-- =========================================================
+         NAVIGATION BAR
+         ========================================================= -->
+    <header class="navbar-wrapper">
+        <nav class="navbar" id="navbar">
+            <a href="index.html" class="navbar-logo" aria-label="CryptoVerse Home">
+                <div class="logo-icon-wrapper">
+                    <i class="fa-solid fa-cube logo-icon"></i>
+                </div>
+                <span class="logo-text">Crypto<span class="logo-accent">Verse</span></span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="watchlist.html" class="nav-link">Watchlist <span id="nav-watchlist-count" class="badge">0</span></a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark or light theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon theme-icon"></i>
+                </button>
+                <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================================================
+         MAIN CONTENT AREA
+         ========================================================= -->
+    <main class="main-content">
+        <!-- About Hero Banner -->
+        <section class="glass-card about-hero-card">
+            <div class="hero-badge" style="margin: 0 auto 20px;">
+                <i class="fa-solid fa-user-graduate badge-icon"></i>
+                <span>Full Stack Internship Evaluation Project</span>
+            </div>
+            <h1 class="section-title" style="font-size: 3rem; margin-bottom: 16px;">About <span class="text-gradient">CryptoVerse</span></h1>
+            <p class="section-subtitle" style="max-width: 720px; margin: 0 auto;">
+                A next-generation, immersive 3D cryptocurrency analytics platform built from scratch to demonstrate senior-grade frontend engineering, interactive Three.js graphics, and real-time API integrations.
+            </p>
+        </section>
+
+        <!-- =========================================================
+             PROBLEM STATEMENT & SOLUTION (2 COLUMNS)
+             ========================================================= -->
+        <section class="section">
+            <div class="problem-solution-grid">
+                <!-- Problem Statement Card -->
+                <div class="glass-card problem-box border-red-glow">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+                        <div class="stat-icon-box" style="background: rgba(255, 77, 109, 0.15); color: var(--color-red);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <h3 class="font-orbitron" style="font-size: 1.4rem; color: var(--color-red);">The Real-World Problem</h3>
+                    </div>
+                    <p style="color: var(--color-gray); line-height: 1.7;">
+                        Modern cryptocurrency investors and traders struggle with fragmented tools. They usually have to visit multiple separate websites and platforms daily to check:
+                    </p>
+                    <ul class="problem-list">
+                        <li><i class="fa-solid fa-xmark text-red"></i> Current live prices across thousands of altcoins</li>
+                        <li><i class="fa-solid fa-xmark text-red"></i> Global macro market trends and dominance metrics</li>
+                        <li><i class="fa-solid fa-xmark text-red"></i> Deep statistical charts and all-time price history</li>
+                        <li><i class="fa-solid fa-xmark text-red"></i> Managing favorite coin watchlists without heavy logins</li>
+                        <li><i class="fa-solid fa-xmark text-red"></i> Instant fiat-to-crypto conversion rates</li>
+                    </ul>
+                </div>
+
+                <!-- Solution Card -->
+                <div class="glass-card solution-box border-green-glow">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+                        <div class="stat-icon-box" style="background: rgba(0, 255, 149, 0.15); color: var(--color-green);"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 class="font-orbitron" style="font-size: 1.4rem; color: var(--color-green);">The CryptoVerse Solution</h3>
+                    </div>
+                    <p style="color: var(--color-gray); line-height: 1.7;">
+                        CryptoVerse eliminates tool fragmentation by presenting an all-in-one, responsive SaaS application wrapped in a futuristic glassmorphic UI:
+                    </p>
+                    <ul class="solution-list">
+                        <li><i class="fa-solid fa-check text-green"></i> Unified live dashboard powered by CoinGecko Public API</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Interactive Three.js 3D Bitcoin & Digital Globe engine</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Dynamic Chart.js historical trajectory graphing</li>
+                        <li><i class="fa-solid fa-check text-green"></i> LocalStorage Watchlist radar with zero backend overhead</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Live search, instant currency converter & price alerts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             FEATURES SECTION
+             ========================================================= -->
+        <section class="section" id="features">
+            <div class="section-header text-center" style="text-align: center;">
+                <h2 class="section-title">Comprehensive <span class="text-gradient">Feature Suite</span></h2>
+                <p class="section-subtitle">Designed to meet and exceed all full-stack internship grading criteria</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-primary" style="font-size: 1.3rem;"></i>
+                    <span>Live Crypto Prices (&lt; 30s Sync)</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-secondary" style="font-size: 1.3rem;"></i>
+                    <span>3D Bitcoin Visualization</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-green" style="font-size: 1.3rem;"></i>
+                    <span>Rotating Digital Globe</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-primary" style="font-size: 1.3rem;"></i>
+                    <span>Global Market Overview</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-secondary" style="font-size: 1.3rem;"></i>
+                    <span>Trending Coins Carousel</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-green" style="font-size: 1.3rem;"></i>
+                    <span>LocalStorage Watchlist</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-primary" style="font-size: 1.3rem;"></i>
+                    <span>Live Crypto Converter</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-secondary" style="font-size: 1.3rem;"></i>
+                    <span>Interactive Chart.js Graph</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-green" style="font-size: 1.3rem;"></i>
+                    <span>Price Alert Radar Simulator</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-primary" style="font-size: 1.3rem;"></i>
+                    <span>100% Responsive Design</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-secondary" style="font-size: 1.3rem;"></i>
+                    <span>Dark & Light Mode Toggle</span>
+                </div>
+                <div class="glass-card feature-check-item">
+                    <i class="fa-solid fa-check-circle text-green" style="font-size: 1.3rem;"></i>
+                    <span>GSAP Scroll Animations</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TECH STACK SECTION
+             ========================================================= -->
+        <section class="section" id="tech-stack">
+            <div class="section-header text-center" style="text-align: center;">
+                <h2 class="section-title">Built From Scratch Using <span class="text-gradient">Tech Stack</span></h2>
+                <p class="section-subtitle">Built entirely with Vanilla HTML, CSS, and JavaScript without UI frameworks such as React, Angular, Bootstrap, or Tailwind CSS.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="glass-card tech-item">
+                    <i class="fa-brands fa-html5 tech-icon" style="color: #E34F26;"></i>
+                    <h4 class="font-orbitron">HTML5</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Semantic markup, ARIA accessibility, and structured grid hierarchy.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-brands fa-css3-alt tech-icon" style="color: #1572B6;"></i>
+                    <h4 class="font-orbitron">CSS3</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Custom variables, glassmorphism, flexbox, grid, and keyframe glows.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-brands fa-js tech-icon" style="color: #F7DF1E;"></i>
+                    <h4 class="font-orbitron">Vanilla JS (ES6+)</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Async/await, Fetch API, DOM manipulation, modular architecture.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-solid fa-cube tech-icon" style="color: #00E5FF;"></i>
+                    <h4 class="font-orbitron">Three.js</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Interactive 3D cryptocurrency visualization, lighting effects, and particle animations.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-solid fa-chart-line tech-icon" style="color: #7B61FF;"></i>
+                    <h4 class="font-orbitron">Chart.js</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Interactive cryptocurrency price charts with responsive design and animated data visualization.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-solid fa-wand-magic-sparkles tech-icon" style="color: #00FF95;"></i>
+                    <h4 class="font-orbitron">GSAP & ScrollTrigger</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Smooth page transitions, scroll-triggered animations, and interactive UI effects.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-solid fa-database tech-icon" style="color: #FF4D6D;"></i>
+                    <h4 class="font-orbitron">CoinGecko API</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Live cryptocurrency market data including prices, rankings, market capitalization, and trends.</p>
+                </div>
+                <div class="glass-card tech-item">
+                    <i class="fa-solid fa-hard-drive tech-icon" style="color: #B8C1EC;"></i>
+                    <h4 class="font-orbitron">LocalStorage</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-gray);">Persistent browser storage for Watchlist, theme preferences, and alerts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DEVELOPER INFORMATION & FUTURE ROADMAP
+             ========================================================= -->
+        <section class="glass-card" style="padding: 40px; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+                <div>
+                    <h3 class="font-orbitron" style="font-size: 1.6rem; margin-bottom: 8px;">Developer Information</h3>
+                    <p style="color: var(--color-gray); max-width: 600px;">
+                        Developed by a Full Stack Development Intern with a strong interest in frontend development, interactive web applications, responsive design, and modern JavaScript technologies. This project demonstrates practical experience in API integration, data visualization, and user-focused interface design.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://github.com/" target="_blank" class="btn btn-primary">
+                        <i class="fa-brands fa-github btn-icon-left"></i>
+                        <span>View GitHub Repo</span>
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--glass-border);">
+                <h4 class="font-orbitron" style="font-size: 1.2rem; margin-bottom: 16px; color: var(--color-primary);"><i class="fa-solid fa-road"></i> Future Enhancements</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;" class="features-grid">
+                    <div style="padding: 16px; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                        <h5 style="font-weight: 700; margin-bottom: 6px;">1. Web3 Wallet Integration</h5>
+                        <p style="font-size: 0.85rem; color: var(--color-gray);">Integrate MetaMask and Phantom wallets to enable secure wallet connectivity and support decentralized cryptocurrency transactions.</p>
+                    </div>
+                    <div style="padding: 16px; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                        <h5 style="font-weight: 700; margin-bottom: 6px;">2. AI Sentiment Engine</h5>
+                        <p style="font-size: 0.85rem; color: var(--color-gray);">Integrate the Gemini API to analyze and summarize cryptocurrency-related news and social media sentiment.</p>
+                    </div>
+                    <div style="padding: 16px; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                        <h5 style="font-weight: 700; margin-bottom: 6px;">3. Multi-Currency Portfolio</h5>
+                        <p style="font-size: 0.85rem; color: var(--color-gray);">Enable users to manage a personal cryptocurrency portfolio and monitor profit/loss based on purchase history.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="navbar-logo footer-logo">
+                        <div class="logo-icon-wrapper"><i class="fa-solid fa-cube logo-icon"></i></div>
+                        <span class="logo-text">Crypto<span class="logo-accent">Verse</span></span>
+                    </a>
+                    <p class="footer-desc">A futuristic 3D cryptocurrency dashboard providing real-time market data, interactive charts, and quantum portfolio insights.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home Dashboard</a></li>
+                        <li><a href="watchlist.html">My Watchlist</a></li>
+                        <li><a href="about.html">About Project</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Tech Stack</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><i class="fa-brands fa-html5 text-primary"></i> HTML5 & CSS3</a></li>
+                        <li><a href="about.html"><i class="fa-brands fa-js text-secondary"></i> Vanilla JS & Three.js</a></li>
+                        <li><a href="about.html"><i class="fa-solid fa-chart-line text-green"></i> Chart.js & GSAP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">API Credits</h4>
+                    <p class="footer-api-text">Data powered by <a href="https://www.coingecko.com/en/api" target="_blank" class="footer-link-highlight">CoinGecko Public API</a>.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; 2026 CryptoVerse. Designed & Developed for Full Stack Development Internship.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <button id="back-to-top-btn" class="floating-btn" aria-label="Scroll back to top of page">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Internal Modules -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
