@@ -16,7 +16,7 @@ This project was developed as part of a **Full Stack Development Internship** to
 https://github.com/your-username/CryptoVerse
 
 **Live Demo:**  
-https://your-live-demo-link.com
+https://nooruleman023.github.io/Cryptoverse-Crypto-Dashboard/
 
 ---
 
